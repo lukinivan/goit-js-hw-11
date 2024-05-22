@@ -1,40 +1,17 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import cross from '../img/icon.svg';
+import icon from '../img/blocked.svg';
 
-export function alert() {
+export function noImageMsg() {
   iziToast.show({
-    message: 'Please choose a date in the future',
-    messageColor: '#fff',
-    color: '#ef4040',
+    message:
+      'Sorry, there are no images matching your search query. Please try again!',
+    messageColor: 'black',
+    color: 'red',
     position: 'topRight',
-    timeout: 2000,
+    timeout: 3000,
     close: true,
-    progressBar: false,
-    iconUrl: cross,
-  });
-}
-
-export function success(delay) {
-  iziToast.show({
-    message: `✅ Fulfilled promise in ${delay}ms`,
-    messageColor: '#fff',
-    color: '#59a10d',
-    position: 'topRight',
-    timeout: 2000,
-    close: true,
-    progressBar: false,
-  });
-}
-
-export function unsuccess(delay) {
-  iziToast.show({
-    message: `❌ Rejected promise in ${delay}ms`,
-    messageColor: '#fff',
-    color: '#f56e6e',
-    position: 'topRight',
-    timeout: 2000,
-    close: true,
-    progressBar: false,
+    progressBar: true,
+    iconUrl: icon,
   });
 }
