@@ -15,3 +15,11 @@ export function noImageMsg() {
     iconUrl: icon,
   });
 }
+
+export function responseError(errorMessage) {
+  iziToast.error({
+    title: 'Error',
+    position: 'topRight',
+    message: errorMessage,
+  });
+}

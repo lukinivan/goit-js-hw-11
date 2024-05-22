@@ -3,7 +3,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { imagesTemplate } from './js/render-functions.js';
 import { getPhotos } from './js/pixabay-api.js';
-import { noImageMsg } from './js/iziToast.js';
+import { noImageMsg, responseError } from './js/iziToast.js';
 
 const lightBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -21,14 +21,19 @@ requestForm.addEventListener('submit', e => {
   galleryCont.innerHTML = '';
   imageLoader.classList.add('loader');
 
-  getPhotos(query).then(data => {
-    data.total === 0
-      ? noImageMsg()
-      : (galleryCont.innerHTML = imagesTemplate(data.hits));
+  getPhotos(query)
+    .then(data => {
+      data.total === 0
+        ? noImageMsg()
+        : (galleryCont.innerHTML = imagesTemplate(data.hits));
 
-    lightBox.refresh();
-    imageLoader.classList.remove('loader');
-  });
+      lightBox.refresh();
+      imageLoader.classList.remove('loader');
+    })
+    .catch(error => {
+      responseError(error.message);
+      imageLoader.classList.remove('loader');
+    });
 
   e.currentTarget.reset();
 });
