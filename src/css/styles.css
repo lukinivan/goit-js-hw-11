@@ -128,4 +128,8 @@ img {
     box-shadow: -38px 6px, -14px -6px, 14px 6px;
   }
 }
+
+.hide-loader {
+  display: none;
+}
 /* #endregion */
